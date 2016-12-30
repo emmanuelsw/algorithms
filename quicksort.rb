@@ -1,7 +1,6 @@
 # Implementation of quicksort algorithm in Ruby
 
 require 'benchmark_methods'
-require 'colorize'
 
 module Quicksort
   include BenchmarkMethods
@@ -11,13 +10,9 @@ module Quicksort
   def self.quicksort array
     if array.length > 1
 
-      # 1
       pivote = array.sample
-      less = Array.new
-      equal = Array.new
-      greater = Array.new
+      less, equal, greater = [], [], []
 
-      # 2
       array.each do |value|
         if value < pivote
           less << value
@@ -28,14 +23,11 @@ module Quicksort
         end
       end
 
-      # 3
       final_array = quicksort(less) + equal + quicksort(greater)
-
       return final_array
     else
       return array
     end
-
   end
 
   def self.run
